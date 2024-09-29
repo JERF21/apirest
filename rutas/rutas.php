@@ -8,13 +8,16 @@ if(count(array_filter($array))==1){
     );
 echo json_encode($json, true);
 }else{
-/**si se hace ninguna peticion a la API */
+/**si se hace alguna peticion a la API */
 if(count(array_filter($array))==2){
-    $json=array(
-        "detalle"=>"¿Cuál es la solicitud?",
-    );
-echo json_encode($json, true);
-
+/*cursos*/
+if(array_filter($array)[2]=="cursos"){
+    /*ver listas de cursos* */
+    if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="GET"){
+        $cursos=new ControladorCursos();
+        $cursos->index();
+    }
+}
 }
 
 
